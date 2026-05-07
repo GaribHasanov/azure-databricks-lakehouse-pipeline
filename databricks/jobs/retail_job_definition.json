@@ -1,0 +1,76 @@
+{
+  "name": "retail_lakehouse_job",
+  "email_notifications": {
+    "on_failure": ["data-team@company.com"]
+  },
+  "timeout_seconds": 3600,
+  "max_concurrent_runs": 1,
+
+  "tasks": [
+    {
+      "task_key": "ingest_bronze",
+      "notebook_task": {
+        "notebook_path": "/Shared/retail_lakehouse/ingest_sales_to_bronze"
+      },
+      "new_cluster": {
+        "spark_version": "13.3.x-scala2.12",
+        "node_type_id": "Standard_DS3_v2",
+        "num_workers": 2
+      }
+    },
+
+    {
+      "task_key": "build_fact_sales",
+      "depends_on": [
+        {
+          "task_key": "ingest_bronze"
+        }
+      ],
+      "notebook_task": {
+        "notebook_path": "/Shared/retail_lakehouse/build_fact_sales"
+      },
+      "new_cluster": {
+        "spark_version": "13.3.x-scala2.12",
+        "node_type_id": "Standard_DS3_v2",
+        "num_workers": 2
+      }
+    },
+
+    {
+      "task_key": "build_dimensions",
+      "depends_on": [
+        {
+          "task_key": "ingest_bronze"
+        }
+      ],
+      "notebook_task": {
+        "notebook_path": "/Shared/retail_lakehouse/build_dim_product"
+      },
+      "new_cluster": {
+        "spark_version": "13.3.x-scala2.12",
+        "node_type_id": "Standard_DS3_v2",
+        "num_workers": 2
+      }
+    },
+
+    {
+      "task_key": "build_kpis",
+      "depends_on": [
+        {
+          "task_key": "build_fact_sales"
+        },
+        {
+          "task_key": "build_dimensions"
+        }
+      ],
+      "notebook_task": {
+        "notebook_path": "/Shared/retail_lakehouse/build_sales_kpis"
+      },
+      "new_cluster": {
+        "spark_version": "13.3.x-scala2.12",
+        "node_type_id": "Standard_DS3_v2",
+        "num_workers": 2
+      }
+    }
+  ]
+}
