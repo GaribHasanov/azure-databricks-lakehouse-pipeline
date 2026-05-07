@@ -1,0 +1,34 @@
+[
+  {
+    "store_id": "S01",
+    "store_name": "Central Market Essen",
+    "city": "Essen",
+    "region": "North Rhine-Westphalia",
+    "store_size": "Large",
+    "opening_date": "2018-03-10"
+  },
+  {
+    "store_id": "S02",
+    "store_name": "Downtown Market Dortmund",
+    "city": "Dortmund",
+    "region": "North Rhine-Westphalia",
+    "store_size": "Medium",
+    "opening_date": "2019-07-15"
+  },
+  {
+    "store_id": "S03",
+    "store_name": "City Market Düsseldorf",
+    "city": "Düsseldorf",
+    "region": "North Rhine-Westphalia",
+    "store_size": "Large",
+    "opening_date": "2020-05-01"
+  },
+  {
+    "store_id": "S04",
+    "store_name": "Express Market Bochum",
+    "city": "Bochum",
+    "region": "North Rhine-Westphalia",
+    "store_size": "Small",
+    "opening_date": "2021-09-21"
+  }
+]
