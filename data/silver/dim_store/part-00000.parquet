@@ -1,0 +1,4 @@
+store_id | city     | region | size
+S01      | Essen    | NRW    | Large
+S02      | Dortmund | NRW    | Medium
+S03      | Dusseldorf | NRW  | Large
