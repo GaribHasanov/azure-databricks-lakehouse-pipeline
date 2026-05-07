@@ -1,4 +1,4 @@
-name: Deploy Retail Lakehouse Pipeline
+name: Deploy Retail Lakehouse Platform
 
 on:
   push:
@@ -10,34 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout code
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
-      # 2. Python setup (for validation scripts if needed)
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
           python-version: "3.10"
 
-      # 3. Install Databricks CLI
-      - name: Install Databricks CLI
-        run: pip install databricks-cli
-
-      # 4. Authenticate Databricks
-      - name: Configure Databricks
+      - name: Install dependencies
         run: |
-          mkdir -p ~/.databricks
-          echo "[DEFAULT]" > ~/.databricks.cfg
-          echo "host = ${{ secrets.DATABRICKS_HOST }}" >> ~/.databricks.cfg
-          echo "token = ${{ secrets.DATABRICKS_TOKEN }}" >> ~/.databricks.cfg
+          pip install pyspark delta-spark
 
-      # 5. Deploy notebooks to Databricks workspace
-      - name: Deploy Notebooks
+      - name: Run validation tests
         run: |
-          databricks workspace import_dir databricks/notebooks /Shared/retail_lakehouse --overwrite
+          python -m pytest src/tests/
 
-      # 6. Deploy ADF pipeline (placeholder)
-      - name: Deploy ADF Pipeline
+      - name: Deploy Databricks notebooks
         run: |
-          echo "Deploy ADF via ARM / Terraform / Bicep"
+          echo "Deploying notebooks to Databricks workspace..."
