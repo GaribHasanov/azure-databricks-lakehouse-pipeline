@@ -1,0 +1,4 @@
+transaction_id | date       | store_id | customer_id | product_id | quantity | unit_price | total_price
+T1001          | 2025-05-01 | S01      | C100        | P10        | 2        | 3.5        | 7.0
+T1002          | 2025-05-01 | S02      | C101        | P12        | 1        | 7.99       | 7.99
+T1003          | 2025-05-01 | S03      | C102        | P13        | 3        | 4.2        | 12.6
