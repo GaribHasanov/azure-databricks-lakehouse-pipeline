@@ -1,39 +1,22 @@
-# Power BI Semantic Model - Retail Lakehouse
+# Power BI Data Model
 
-## Data Sources
-- gold.sales_kpis
-- silver.fact_sales
-- silver.dim_product
-- silver.dim_store
+## Fact Table
+- fact_sales
+
+## Dimensions
+- dim_product
+- dim_store
+- dim_customer
+- dim_promotion
 
 ## Relationships
+- fact_sales.product_id → dim_product.product_id
+- fact_sales.store_id → dim_store.store_id
+- fact_sales.customer_id → dim_customer.customer_id
+- fact_sales.promo_id → dim_promotion.promo_id
 
-fact_sales.store_id → dim_store.store_id  
-fact_sales.product_id → dim_product.product_id  
-
-## Key Measures
-
-### Total Revenue
-SUM(fact_sales.total_price)
-
-### Total Transactions
-COUNT(fact_sales.transaction_id)
-
-### Average Basket Value
-AVERAGE(fact_sales.total_price)
-
-## Dashboards
-
-### 1. Store Performance Dashboard
-- Revenue by store
-- Transactions per store
-- Region comparison
-
-### 2. Product Performance Dashboard
-- Top selling products
-- Category revenue share
-
-### 3. Executive KPI Dashboard
-- Total revenue
-- Growth over time
-- Store ranking
+## KPIs
+- Total Revenue
+- Average Basket Value
+- Store Performance Index
+- Promotion ROI
