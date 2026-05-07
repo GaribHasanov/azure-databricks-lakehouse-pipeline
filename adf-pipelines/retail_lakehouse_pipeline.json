@@ -3,20 +3,31 @@
   "properties": {
     "description": "End-to-end retail lakehouse pipeline (Bronze → Silver → Gold)",
     "activities": [
+      
       {
-        "name": "Bronze_Ingestion",
+        "name": "Ingest_Sales_Bronze",
         "type": "DatabricksNotebook",
         "dependsOn": [],
         "typeProperties": {
           "notebookPath": "/databricks/notebooks/ingest_sales_to_bronze"
         }
       },
+
       {
-        "name": "Build_Silver_Fact",
+        "name": "Ingest_Products_Bronze",
+        "type": "DatabricksNotebook",
+        "dependsOn": [],
+        "typeProperties": {
+          "notebookPath": "/databricks/notebooks/ingest_products_to_bronze"
+        }
+      },
+
+      {
+        "name": "Build_Fact_Sales",
         "type": "DatabricksNotebook",
         "dependsOn": [
           {
-            "activity": "Bronze_Ingestion",
+            "activity": "Ingest_Sales_Bronze",
             "dependencyConditions": ["Succeeded"]
           }
         ],
@@ -24,12 +35,13 @@
           "notebookPath": "/databricks/notebooks/build_fact_sales"
         }
       },
+
       {
         "name": "Build_Dim_Product",
         "type": "DatabricksNotebook",
         "dependsOn": [
           {
-            "activity": "Bronze_Ingestion",
+            "activity": "Ingest_Products_Bronze",
             "dependencyConditions": ["Succeeded"]
           }
         ],
@@ -37,12 +49,13 @@
           "notebookPath": "/databricks/notebooks/build_dim_product"
         }
       },
+
       {
         "name": "Build_Dim_Store",
         "type": "DatabricksNotebook",
         "dependsOn": [
           {
-            "activity": "Bronze_Ingestion",
+            "activity": "Ingest_Sales_Bronze",
             "dependencyConditions": ["Succeeded"]
           }
         ],
@@ -50,12 +63,49 @@
           "notebookPath": "/databricks/notebooks/build_dim_store"
         }
       },
+
+      {
+        "name": "Build_Dim_Customer",
+        "type": "DatabricksNotebook",
+        "dependsOn": [
+          {
+            "activity": "Ingest_Sales_Bronze",
+            "dependencyConditions": ["Succeeded"]
+          }
+        ],
+        "typeProperties": {
+          "notebookPath": "/databricks/notebooks/build_dim_customer"
+        }
+      },
+
+      {
+        "name": "Build_Dim_Promotion",
+        "type": "DatabricksNotebook",
+        "dependsOn": [
+          {
+            "activity": "Build_Dim_Product",
+            "dependencyConditions": ["Succeeded"]
+          }
+        ],
+        "typeProperties": {
+          "notebookPath": "/databricks/notebooks/build_dim_promotion"
+        }
+      },
+
       {
         "name": "Build_Gold_KPIs",
         "type": "DatabricksNotebook",
         "dependsOn": [
           {
-            "activity": "Build_Silver_Fact",
+            "activity": "Build_Fact_Sales",
+            "dependencyConditions": ["Succeeded"]
+          },
+          {
+            "activity": "Build_Dim_Product",
+            "dependencyConditions": ["Succeeded"]
+          },
+          {
+            "activity": "Build_Dim_Store",
             "dependencyConditions": ["Succeeded"]
           }
         ],
@@ -63,6 +113,7 @@
           "notebookPath": "/databricks/notebooks/build_sales_kpis"
         }
       }
+
     ]
   }
 }
