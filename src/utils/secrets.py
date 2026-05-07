@@ -1,10 +1,13 @@
 import os
 
 
-def get_secret(key: str) -> str:
-    value = os.getenv(key)
+class SecretsManager:
 
-    if not value:
-        raise Exception(f"Missing secret: {key}")
+    @staticmethod
+    def get(secret_name: str) -> str:
+        value = os.getenv(secret_name)
 
-    return value
+        if not value:
+            raise Exception(f"Missing secret: {secret_name}")
+
+        return value
