@@ -1,0 +1,3 @@
+promo_id | product_id | discount | uplift_revenue | effectiveness_score
+PR1      | P10        | 10       | 7.0            | 1.15
+PR2      | P12        | 15       | 7.99           | 1.25
