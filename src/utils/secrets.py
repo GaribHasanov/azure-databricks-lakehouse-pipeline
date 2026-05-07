@@ -1,22 +1,10 @@
 import os
 
 
-class SecretsManager:
-    """
-    Handles secure secret retrieval
-    """
+def get_secret(key: str) -> str:
+    value = os.getenv(key)
 
-    @staticmethod
-    def get_secret(secret_name: str) -> str:
-        """
-        Returns secret from environment variables
-        """
+    if not value:
+        raise Exception(f"Missing secret: {key}")
 
-        value = os.getenv(secret_name)
-
-        if not value:
-            raise ValueError(
-                f"Missing required secret: {secret_name}"
-            )
-
-        return value
+    return value
