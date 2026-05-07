@@ -1,0 +1,4 @@
+customer_id | age_group | gender | city     | loyalty_status
+C100        | 25-34     | F      | Essen    | Gold
+C101        | 35-44     | M      | Dortmund | Silver
+C102        | 18-24     | F      | Dusseldorf | Bronze
