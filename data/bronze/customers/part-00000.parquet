@@ -1,0 +1,3 @@
+customer_id | name  | age_group | gender | city     | loyalty | ingestion_ts
+C100        | Emma  | 25-34     | F      | Essen    | Gold    | 2025-05-01
+C101        | Lukas | 35-44     | M      | Dortmund | Silver  | 2025-05-01
