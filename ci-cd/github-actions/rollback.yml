@@ -1,0 +1,12 @@
+name: Rollback Deployment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger rollback
+        run: echo "Rolling back Databricks + ADF deployment"
