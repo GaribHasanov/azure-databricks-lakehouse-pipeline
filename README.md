@@ -8,9 +8,9 @@ End-to-end **cloud-native data platform** built on Azure Databricks, implementin
 
 This project implements a **Medallion Architecture**:
 
-- **Bronze Layer** → Raw transactional data ingestion
-- **Silver Layer** → Cleaned and structured data (Fact + Dimensions)
-- **Gold Layer** → Business KPIs and analytics datasets
+- **Bronze Layer** → Raw transactional data ingestion  
+- **Silver Layer** → Cleaned and structured data (Fact + Dimensions)  
+- **Gold Layer** → Business KPIs and analytics datasets  
 
 ---
 
@@ -18,10 +18,10 @@ This project implements a **Medallion Architecture**:
 
 Retail analytics platform for:
 
-- Sales transactions analysis
-- Product performance tracking
-- Store/region performance evaluation
-- Promotion effectiveness analysis
+- Sales transactions analysis  
+- Product performance tracking  
+- Store/region performance evaluation  
+- Promotion effectiveness analysis  
 
 ---
 
