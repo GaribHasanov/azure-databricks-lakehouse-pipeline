@@ -1,0 +1,8 @@
+{
+  "job_name": "retail_lakehouse_batch_job",
+  "schedule": {
+    "quartz_cron_expression": "0 0 2 * * ?",
+    "timezone": "Europe/Berlin",
+    "pause_status": "UNPAUSED"
+  }
+}
