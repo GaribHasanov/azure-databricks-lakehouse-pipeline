@@ -1,0 +1,38 @@
+[
+  {
+    "customer_id": "C100",
+    "first_name": "Emma",
+    "last_name": "Schneider",
+    "age_group": "25-34",
+    "gender": "Female",
+    "city": "Essen",
+    "loyalty_status": "Gold"
+  },
+  {
+    "customer_id": "C101",
+    "first_name": "Lukas",
+    "last_name": "Müller",
+    "age_group": "35-44",
+    "gender": "Male",
+    "city": "Dortmund",
+    "loyalty_status": "Silver"
+  },
+  {
+    "customer_id": "C102",
+    "first_name": "Sophia",
+    "last_name": "Weber",
+    "age_group": "18-24",
+    "gender": "Female",
+    "city": "Düsseldorf",
+    "loyalty_status": "Bronze"
+  },
+  {
+    "customer_id": "C103",
+    "first_name": "Noah",
+    "last_name": "Becker",
+    "age_group": "45-54",
+    "gender": "Male",
+    "city": "Bochum",
+    "loyalty_status": "Gold"
+  }
+]
