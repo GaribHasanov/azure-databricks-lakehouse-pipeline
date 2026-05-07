@@ -1,0 +1,26 @@
+[
+  {
+    "promo_id": "PR01",
+    "product_id": "P10",
+    "discount_percent": 10,
+    "start_date": "2025-05-01",
+    "end_date": "2025-05-10",
+    "promo_type": "Seasonal"
+  },
+  {
+    "promo_id": "PR02",
+    "product_id": "P12",
+    "discount_percent": 15,
+    "start_date": "2025-05-03",
+    "end_date": "2025-05-12",
+    "promo_type": "Weekend Deal"
+  },
+  {
+    "promo_id": "PR03",
+    "product_id": "P13",
+    "discount_percent": 5,
+    "start_date": "2025-05-05",
+    "end_date": "2025-05-15",
+    "promo_type": "Loyalty Offer"
+  }
+]
