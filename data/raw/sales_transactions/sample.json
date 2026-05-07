@@ -1,0 +1,29 @@
+[
+  {
+    "transaction_id": "T001",
+    "timestamp": "2025-05-01T10:15:00",
+    "store_id": "S01",
+    "customer_id": "C100",
+    "product_id": "P10",
+    "quantity": 2,
+    "unit_price": 3.50
+  },
+  {
+    "transaction_id": "T002",
+    "timestamp": "2025-05-01T10:17:00",
+    "store_id": "S02",
+    "customer_id": "C101",
+    "product_id": "P12",
+    "quantity": 1,
+    "unit_price": 7.99
+  },
+  {
+    "transaction_id": "T003",
+    "timestamp": "2025-05-01T10:20:00",
+    "store_id": "S01",
+    "customer_id": "C102",
+    "product_id": "P11",
+    "quantity": 3,
+    "unit_price": 2.10
+  }
+]
