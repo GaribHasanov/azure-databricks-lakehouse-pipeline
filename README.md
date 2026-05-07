@@ -1,63 +1,53 @@
-# Azure Data Lakehouse Pipeline (ADF + Databricks + CI/CD)
+# Retail Lakehouse Analytics Platform
 
-## 📌 Project Overview
-This project demonstrates an end-to-end **data engineering solution on Azure Cloud**, implementing a modern **Lakehouse architecture** using Azure Data Factory, Databricks, and CI/CD pipelines.
-
-The goal is to ingest raw data, transform it using Spark, and deliver analytics-ready datasets for reporting and visualization.
+End-to-end **cloud-native data platform** built on Azure Databricks, implementing a modern **Lakehouse architecture** for retail analytics use cases.
 
 ---
 
-## 🏗️ Architecture
+## 🏗️ Architecture Overview
 
-![Architecture](docs/architecture.png)
+This project implements a **Medallion Architecture**:
+
+- **Bronze Layer** → Raw transactional data ingestion
+- **Silver Layer** → Cleaned and structured data (Fact + Dimensions)
+- **Gold Layer** → Business KPIs and analytics datasets
 
 ---
 
-## ⚙️ Tech Stack
+## 📊 Business Domain
 
-- Azure Data Factory (Data Orchestration)
+Retail analytics platform for:
+
+- Sales transactions analysis
+- Product performance tracking
+- Store/region performance evaluation
+- Promotion effectiveness analysis
+
+---
+
+## 📁 Data Model
+
+### Fact Table
+- `fact_sales`
+
+### Dimension Tables
+- `dim_product`
+- `dim_store`
+- `dim_customer`
+- `dim_promotion`
+
+---
+
+## ⚙️ Technology Stack
+
+- Azure Databricks (PySpark)
+- Azure Data Factory (Orchestration)
+- Delta Lake (Storage Layer)
 - Azure Data Lake Storage Gen2
-- Databricks (Apache Spark)
-- Delta Lake (Medallion Architecture)
 - GitHub Actions (CI/CD)
-- Python / PySpark
-- Power BI (optional visualization layer)
+- Terraform (Infrastructure as Code)
+- Azure Key Vault (Secrets Management)
 
 ---
 
-## 🧱 Data Architecture Layers
-
-- **Bronze Layer** → Raw ingested data
-- **Silver Layer** → Cleaned and transformed data
-- **Gold Layer** → Business-ready analytics data
-
----
-
-## 🔄 Pipeline Flow
-
-1. Data ingestion via Azure Data Factory
-2. Storage in Azure Data Lake (Bronze)
-3. Transformation using Databricks (Spark)
-4. Curated datasets stored in Silver/Gold layers
-5. CI/CD automation via GitHub Actions
-6. Data visualization (Power BI optional)
-
----
-
-## 🚀 Key Features
-
-- End-to-end cloud data pipeline
-- Scalable Lakehouse architecture
-- Automated CI/CD deployment
-- Modular ETL design
-- Medallion data modeling approach
-
----
-
-## 📊 Outcome
-
-This project simulates a real-world enterprise data platform for scalable analytics and reporting.
-
----
-
-## 📁 Project Structure
+## 🔄 Data Flow
