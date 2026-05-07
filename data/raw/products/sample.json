@@ -1,0 +1,37 @@
+[
+  {
+    "product_id": "P10",
+    "name": "Organic Milk 1L",
+    "category": "Dairy",
+    "brand": "FreshFarm",
+    "price": 3.50
+  },
+  {
+    "product_id": "P11",
+    "name": "Whole Wheat Bread",
+    "category": "Bakery",
+    "brand": "BakeHouse",
+    "price": 2.10
+  },
+  {
+    "product_id": "P12",
+    "name": "Free Range Eggs",
+    "category": "Dairy",
+    "brand": "NatureBest",
+    "price": 7.99
+  },
+  {
+    "product_id": "P13",
+    "name": "Orange Juice",
+    "category": "Beverages",
+    "brand": "SunFresh",
+    "price": 4.20
+  },
+  {
+    "product_id": "P14",
+    "name": "Chicken Breast",
+    "category": "Meat",
+    "brand": "FarmSelect",
+    "price": 9.50
+  }
+]
