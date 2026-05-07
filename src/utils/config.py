@@ -3,17 +3,24 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Config:
+class StorageConfig:
     raw_path: str
     bronze_path: str
     silver_path: str
     gold_path: str
 
 
-def get_config() -> Config:
-    return Config(
-        raw_path=os.getenv("RAW_PATH", "/data/raw/"),
-        bronze_path=os.getenv("BRONZE_PATH", "/data/bronze/"),
-        silver_path=os.getenv("SILVER_PATH", "/data/silver/"),
-        gold_path=os.getenv("GOLD_PATH", "/data/gold/")
+@dataclass
+class AppConfig:
+    storage: StorageConfig
+
+
+def load_config() -> AppConfig:
+    return AppConfig(
+        storage=StorageConfig(
+            raw_path=os.getenv("RAW_PATH", "/mnt/data/raw/"),
+            bronze_path=os.getenv("BRONZE_PATH", "/mnt/data/bronze/"),
+            silver_path=os.getenv("SILVER_PATH", "/mnt/data/silver/"),
+            gold_path=os.getenv("GOLD_PATH", "/mnt/data/gold/")
+        )
     )
