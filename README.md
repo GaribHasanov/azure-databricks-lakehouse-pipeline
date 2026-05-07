@@ -1,6 +1,6 @@
 # Retail Lakehouse Analytics Platform
 
-End-to-end **cloud-native data platform** built on Azure Databricks, implementing a modern **Lakehouse architecture** for retail analytics use cases.
+End-to-end **cloud-native batch data platform** built on Azure Databricks implementing a modern **Lakehouse architecture** for retail analytics use cases.
 
 ---
 
@@ -8,20 +8,33 @@ End-to-end **cloud-native data platform** built on Azure Databricks, implementin
 
 This project implements a **Medallion Architecture**:
 
-- **Bronze Layer** → Raw transactional data ingestion  
-- **Silver Layer** → Cleaned and structured data (Fact + Dimensions)  
-- **Gold Layer** → Business KPIs and analytics datasets  
+- **Bronze Layer** → Raw transactional data ingestion (ADF → ADLS)
+- **Silver Layer** → Cleaned and structured data (Fact + Dimensions via Databricks)
+- **Gold Layer** → Business KPIs and analytics datasets
+
+---
+
+## 🔄 Data Flow
+
+Raw Data Sources  
+→ Azure Data Factory (Orchestration)  
+→ Bronze Layer (Delta Lake)  
+→ Databricks ETL (PySpark)  
+→ Silver Layer (Fact & Dimension Tables)  
+→ Gold Layer (Business KPIs)  
+→ Power BI / Analytics
 
 ---
 
 ## 📊 Business Domain
 
-Retail analytics platform for:
+Retail analytics platform covering:
 
 - Sales transactions analysis  
 - Product performance tracking  
 - Store/region performance evaluation  
 - Promotion effectiveness analysis  
+- Customer segmentation  
 
 ---
 
@@ -38,125 +51,74 @@ Retail analytics platform for:
 
 ---
 
-## ⚙️ Technology Stack
+## 📊 KPIs Generated
 
-- Azure Databricks (PySpark)
-- Azure Data Factory (Orchestration)
-- Delta Lake (Storage Layer)
-- Azure Data Lake Storage Gen2
-- GitHub Actions (CI/CD)
-- Terraform (Infrastructure as Code)
-- Azure Key Vault (Secrets Management)
-
----
-
-
-
-# Retail Lakehouse Analytics Platform (Azure Databricks)
-
-## Overview
-End-to-end **batch-based Lakehouse data platform** built on Azure Databricks, Azure Data Factory, and Delta Lake for retail analytics use cases.
-
-The system implements a full **Medallion Architecture (Bronze → Silver → Gold)** with enterprise-grade data engineering patterns.
+- Total Revenue  
+- Average Basket Value  
+- Store Performance Index  
+- Product Sales Ranking  
+- Promotion ROI  
+- Customer Segmentation Metrics  
 
 ---
 
-## 🏗️ Architecture
+## ⚙️ Key Engineering Features
 
-### Layers
-
-- **Raw Layer**: Source data (sales, products, stores, customers, promotions)
-- **Bronze Layer**: Raw ingestion into Delta tables
-- **Silver Layer**: Cleaned and conformed data (Fact + Dimensions)
-- **Gold Layer**: Business KPIs and analytics datasets
-
----
-
-## 📊 Business Use Cases
-
-- Sales performance analytics
-- Product performance tracking
-- Store-level KPIs
-- Customer segmentation
-- Promotion effectiveness analysis
-
----
-
-## ⚙️ Technology Stack
-
-- Azure Databricks (PySpark + Delta Lake)
-- Azure Data Factory (Orchestration)
-- Azure Data Lake Storage Gen2
-- Terraform (Infrastructure as Code)
-- GitHub Actions (CI/CD)
-- Azure Key Vault (Secrets Management)
-- Power BI (Reporting)
-
----
-
-## 🔄 Data Flow
-
-Raw Data → ADF Pipeline → Bronze → Databricks ETL → Silver → Gold → Power BI
-
----
-
-## 📁 Project Structure
-
-- `data/` → Raw + Bronze + Silver + Gold layers
-- `adf-pipelines/` → ADF orchestration pipelines
-- `databricks/` → Notebooks + Jobs
-- `src/` → Core ETL + validation + observability logic
-- `ci-cd/` → Terraform + GitHub Actions
-- `governance/` → Data contracts, catalog, lineage
-- `monitoring/` → SLA, metrics, alerts
-- `docs/` → Architecture + system design + runbook
-
----
-
-## 🔐 Key Features
-
-- Medallion Architecture implementation
-- Star schema data modeling
+- Medallion Architecture (Bronze / Silver / Gold)
+- Star Schema Data Modeling
 - CDC (Change Data Capture) using Delta MERGE
-- Batch processing pipeline (no streaming)
-- Data quality validation layer
-- Observability + monitoring layer
+- Batch Processing Pipeline (no streaming)
+- Data Quality Validation Layer
+- Observability & Monitoring Layer
 - Infrastructure as Code (Terraform)
-- CI/CD automation with GitHub Actions
-- Governance framework (contracts + lineage)
+- CI/CD automation (GitHub Actions)
 
 ---
 
-## 📈 KPIs Generated
+## 🧱 Repository Structure
 
-- Total Revenue
-- Average Basket Value
-- Store Performance Index
-- Product Performance Ranking
-- Promotion ROI
+- `data/` → Raw, Bronze, Silver, Gold layers
+- `adf-pipelines/` → Azure Data Factory orchestration
+- `databricks/` → Notebooks and job definitions
+- `src/` → ETL, validation, observability, utils
+- `ci-cd/` → Terraform + GitHub Actions
+- `governance/` → Data contracts, lineage, catalog
+- `monitoring/` → SLAs, metrics, alerts
+- `docs/` → Architecture, system design, runbooks
 
 ---
 
 ## 🚀 Deployment Flow
 
-1. Terraform deploys Azure infrastructure
-2. GitHub Actions triggers CI/CD pipeline
-3. ADF orchestrates ingestion
-4. Databricks processes Bronze → Silver → Gold
-5. Power BI consumes Gold layer
+1. Terraform provisions Azure infrastructure (ADLS, ADF, Databricks, Key Vault)
+2. GitHub Actions runs CI/CD pipeline
+3. Azure Data Factory orchestrates ingestion workflows
+4. Databricks processes Bronze → Silver → Gold layers
+5. Power BI consumes Gold layer for reporting
+
+---
+
+## 🔐 Production Principles
+
+This project follows production-grade data engineering principles including:
+
+- Medallion Architecture
+- Data Contracts & Governance
+- Idempotent ETL design
+- CDC-based incremental processing
+- Observability & SLA monitoring
+- Infrastructure as Code (IaC)
 
 ---
 
 ## 📌 Notes
 
-- This project is **batch-processing only**
-- Streaming is intentionally excluded
-- Designed for production-style learning and enterprise simulation
+- Batch processing only (no streaming)
+- Designed for enterprise-style analytics workloads
+- Fully modular and scalable architecture
 
 ---
 
-## 📄 Author
+## 📈 Outcome
 
-Data Engineering Project — Azure Lakehouse Architecture
-
-## 🔄 Data Flow
+This project simulates a real-world **Azure Data Engineering platform** used for retail analytics at scale.
