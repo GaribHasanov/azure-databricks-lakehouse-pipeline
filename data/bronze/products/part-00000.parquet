@@ -1,0 +1,4 @@
+product_id | name           | category  | brand      | price | ingestion_ts
+P10        | Milk 1L        | Dairy     | FreshFarm  | 3.5   | 2025-05-01
+P12        | Eggs           | Dairy     | NatureBest | 7.99  | 2025-05-01
+P13        | Orange Juice   | Beverages | SunFresh   | 4.2   | 2025-05-01
