@@ -1,0 +1,41 @@
+name: Deploy Azure Databricks Lakehouse Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  AZURE_RESOURCE_GROUP: your-resource-group
+  DATABRICKS_HOST: https://your-databricks-workspace.azuredatabricks.net
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          pip install databricks-cli
+
+      - name: Authenticate Databricks CLI
+        run: |
+          echo "[DEFAULT]" > ~/.databricks.cfg
+          echo "host = $DATABRICKS_HOST" >> ~/.databricks.cfg
+          echo "token = ${{ secrets.DATABRICKS_TOKEN }}" >> ~/.databricks.cfg
+
+      - name: Upload notebooks to Databricks
+        run: |
+          databricks workspace import_dir databricks/notebooks /databricks/notebooks --overwrite
+
+      - name: Deploy ADF pipeline (placeholder step)
+        run: |
+          echo "Deploy ADF pipelines via ARM/Bicep or Terraform here"
