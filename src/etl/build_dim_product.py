@@ -4,9 +4,15 @@ from pyspark.sql.functions import col, lower, trim
 from src.utils.config import load_config
 
 
+def create_spark_session():
+    return SparkSession.builder \
+        .appName("RetailDimProduct") \
+        .getOrCreate()
+
+
 def transform_dim_product(df):
     """
-    Cleans and structures product dimension table
+    Clean product master data for dimension table
     """
 
     return df.select(
@@ -18,9 +24,15 @@ def transform_dim_product(df):
     ).dropDuplicates(["product_id"])
 
 
+def write_dim(df, path):
+    df.write.format("delta") \
+        .mode("overwrite") \
+        .save(path)
+
+
 def main():
     config = load_config()
-    spark = SparkSession.builder.appName("RetailLakehouse").getOrCreate()
+    spark = create_spark_session()
 
     bronze_path = config.storage.bronze_path + "products/"
     silver_path = config.storage.silver_path + "dim_product/"
@@ -29,9 +41,9 @@ def main():
 
     dim_df = transform_dim_product(df)
 
-    dim_df.write.format("delta").mode("overwrite").save(silver_path)
+    write_dim(dim_df, silver_path)
 
-    print("DIM PRODUCT created successfully")
+    print("DIM PRODUCT created")
 
 
 if __name__ == "__main__":
