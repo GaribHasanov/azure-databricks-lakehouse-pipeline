@@ -1,0 +1,4 @@
+store_id | total_revenue | transactions | performance_score
+S01      | 7.0           | 1             | 85.2
+S02      | 7.99          | 1             | 88.1
+S03      | 12.6          | 1             | 90.5
