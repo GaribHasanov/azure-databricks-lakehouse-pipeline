@@ -1,16 +1,26 @@
 {
-  "name": "retail_lakehouse_job",
-  "email_notifications": {
-    "on_failure": ["data-team@company.com"]
-  },
-  "timeout_seconds": 3600,
+  "name": "retail_lakehouse_batch_job",
   "max_concurrent_runs": 1,
+  "timeout_seconds": 7200,
 
   "tasks": [
+
     {
-      "task_key": "ingest_bronze",
+      "task_key": "ingest_bronze_sales",
       "notebook_task": {
-        "notebook_path": "/Shared/retail_lakehouse/ingest_sales_to_bronze"
+        "notebook_path": "/Workspace/databricks/notebooks/ingest_sales_to_bronze"
+      },
+      "new_cluster": {
+        "spark_version": "13.3.x-scala2.12",
+        "node_type_id": "Standard_DS3_v2",
+        "num_workers": 2
+      }
+    },
+
+    {
+      "task_key": "ingest_bronze_products",
+      "notebook_task": {
+        "notebook_path": "/Workspace/databricks/notebooks/ingest_products_to_bronze"
       },
       "new_cluster": {
         "spark_version": "13.3.x-scala2.12",
@@ -22,12 +32,10 @@
     {
       "task_key": "build_fact_sales",
       "depends_on": [
-        {
-          "task_key": "ingest_bronze"
-        }
+        { "task_key": "ingest_bronze_sales" }
       ],
       "notebook_task": {
-        "notebook_path": "/Shared/retail_lakehouse/build_fact_sales"
+        "notebook_path": "/Workspace/databricks/notebooks/build_fact_sales"
       },
       "new_cluster": {
         "spark_version": "13.3.x-scala2.12",
@@ -39,12 +47,11 @@
     {
       "task_key": "build_dimensions",
       "depends_on": [
-        {
-          "task_key": "ingest_bronze"
-        }
+        { "task_key": "ingest_bronze_sales" },
+        { "task_key": "ingest_bronze_products" }
       ],
       "notebook_task": {
-        "notebook_path": "/Shared/retail_lakehouse/build_dim_product"
+        "notebook_path": "/Workspace/databricks/notebooks/build_dim_product"
       },
       "new_cluster": {
         "spark_version": "13.3.x-scala2.12",
@@ -54,17 +61,13 @@
     },
 
     {
-      "task_key": "build_kpis",
+      "task_key": "build_gold_kpis",
       "depends_on": [
-        {
-          "task_key": "build_fact_sales"
-        },
-        {
-          "task_key": "build_dimensions"
-        }
+        { "task_key": "build_fact_sales" },
+        { "task_key": "build_dimensions" }
       ],
       "notebook_task": {
-        "notebook_path": "/Shared/retail_lakehouse/build_sales_kpis"
+        "notebook_path": "/Workspace/databricks/notebooks/build_sales_kpis"
       },
       "new_cluster": {
         "spark_version": "13.3.x-scala2.12",
@@ -72,5 +75,6 @@
         "num_workers": 2
       }
     }
+
   ]
 }
