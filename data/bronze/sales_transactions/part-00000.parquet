@@ -1,0 +1,4 @@
+transaction_id | timestamp           | store_id | customer_id | product_id | quantity | unit_price | ingestion_ts
+T1001          | 2025-05-01 10:15   | S01      | C100        | P10        | 2        | 3.5        | 2025-05-01
+T1002          | 2025-05-01 11:20   | S02      | C101        | P12        | 1        | 7.99       | 2025-05-01
+T1003          | 2025-05-01 12:45   | S03      | C102        | P13        | 3        | 4.2        | 2025-05-01
